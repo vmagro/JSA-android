@@ -8,5 +8,15 @@
         android:layout_height="fill_parent"
         android:id="@+id/webview"
         />
+    
+    <TextView
+        android:id="@+id/loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Loading..."
+        android:textSize="24dp"
+        />
 
 </RelativeLayout>

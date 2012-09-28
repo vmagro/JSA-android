@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -14,9 +13,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ConventionsApi {
-
-	private static final SimpleDateFormat formatter = new SimpleDateFormat(
-			"MM/dd/yyyy");
 
 	public static ArrayList<Convention> getConventions() throws MalformedURLException, IOException, JSONException {
 		ArrayList<Convention> arr = new ArrayList<Convention>();
@@ -29,7 +25,7 @@ public class ConventionsApi {
 				new InputStreamReader(conn.getInputStream())).readLine());
 		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject json = jsonArr.getJSONObject(i);
-			arr.add(new Convention(json, formatter));
+			arr.add(new Convention(json));
 		}
 		return arr;
 	}

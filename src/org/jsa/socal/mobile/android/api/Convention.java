@@ -1,7 +1,6 @@
 package org.jsa.socal.mobile.android.api;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -14,19 +13,19 @@ public class Convention implements Serializable{
 	private int id;
 	private ArrayList<AgendaTopic> agenda = new ArrayList<AgendaTopic>();
 	
-	protected Convention(int id, String name, String location, long date, JSONArray agenda, SimpleDateFormat fmt){
+	protected Convention(int id, String name, String location, String date, JSONArray agenda){
 		this.id = id;
 		this.name = name;
 		this.location = location;
-		this.dateString = fmt.format(date);
+		this.dateString = date;
 		
 		for(int i=0; i<agenda.length(); i++){
 			this.agenda.add(new AgendaTopic(agenda.optJSONObject(i)));
 		}
 	}
 	
-	protected Convention(JSONObject json, SimpleDateFormat fmt){
-		this(json.optInt("id"), json.optString("title"), json.optString("loc"), json.optLong("date"), json.optJSONArray("agenda"), fmt);
+	protected Convention(JSONObject json){
+		this(json.optInt("id"), json.optString("title"), json.optString("loc"), json.optString("date"), json.optJSONArray("agenda"));
 	}
 	
 	public int getId(){

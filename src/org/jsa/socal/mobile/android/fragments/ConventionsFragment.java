@@ -9,7 +9,6 @@ import org.socal.jsa.mobile.android.R;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,13 +60,7 @@ public class ConventionsFragment extends SherlockListFragment {
 
 				@Override
 				protected ArrayList<Convention> doInBackground(Void... params) {
-					try {
-						return ConventionsApi.getConventions();
-					} catch (Exception e) {
-						Log.e("conventions", "no network access");
-						e.printStackTrace();
-					}
-					return null;
+					return ConventionsApi.getConventions(getActivity());
 				}
 
 				@Override

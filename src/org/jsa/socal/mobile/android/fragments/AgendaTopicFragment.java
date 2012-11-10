@@ -70,7 +70,7 @@ public class AgendaTopicFragment extends SherlockFragment implements
 
 			@Override
 			protected void onPostExecute(ArrayList<Comment> result) {
-				if (result != null)
+				if (result != null && getActivity() != null)
 					commentsLv.setAdapter(new CommentsAdapter(result,
 							getActivity().getLayoutInflater()));
 			}

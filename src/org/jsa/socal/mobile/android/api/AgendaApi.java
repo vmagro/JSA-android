@@ -21,8 +21,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
+import android.widget.Toast;
 
 public class AgendaApi {
 
@@ -34,7 +35,6 @@ public class AgendaApi {
 
 		conn = (HttpURLConnection) new URL(Api.AGENDA_TOPICS + "?id=" + id)
 				.openConnection();
-		Log.d("url", Api.AGENDA_TOPICS + "?id=" + id);
 
 		JSONArray jsonArr = new JSONArray(new BufferedReader(
 				new InputStreamReader(conn.getInputStream())).readLine());
@@ -49,7 +49,7 @@ public class AgendaApi {
 	public static void sendCommentAsync(final String name, final String text,
 			final int topicId) {
 		new AsyncTask<Void, Void, Void>() {
-			
+
 			@Override
 			public Void doInBackground(Void... params) {
 				HttpClient httpclient = new DefaultHttpClient();
@@ -74,7 +74,48 @@ public class AgendaApi {
 				}
 				return null;
 			}
+
+		}.execute();
+	}
+
+	public static void voteForSpeakerAsync(final Context ctx, final String userId,
+			final String speaker, final int agendaId){
+		new AsyncTask<Void, Void, String>() {
+
+			@Override
+			public String doInBackground(Void... params) {
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpPost httppost = new HttpPost(Api.VOTE);
+
+				try {
+					// Add your data
+					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+							2);
+					nameValuePairs.add(new BasicNameValuePair("user", userId));
+					nameValuePairs.add(new BasicNameValuePair("speaker",
+							speaker));
+					nameValuePairs.add(new BasicNameValuePair("id", String
+							.valueOf(agendaId)));
+					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+					// Execute HTTP Post Request
+					httpclient.execute(httppost);
+					
+					return "success";
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return null;
+			}
 			
+			@Override
+			public void onPostExecute(String result){
+				if(result == null || !result.equals("success"))
+					Toast.makeText(ctx, "Error submitting vote", Toast.LENGTH_LONG).show();
+			}
+
 		}.execute();
 	}
 

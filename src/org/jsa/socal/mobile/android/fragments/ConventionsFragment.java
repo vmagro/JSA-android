@@ -1,5 +1,6 @@
 package org.jsa.socal.mobile.android.fragments;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.jsa.socal.mobile.android.api.Convention;
@@ -9,6 +10,7 @@ import org.socal.jsa.mobile.android.R;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,18 +51,32 @@ public class ConventionsFragment extends SherlockListFragment {
 
 	private class Adapter extends BaseAdapter {
 
-		private ArrayList<Convention> conventions = new ArrayList<Convention>();
+		private ArrayList<Convention> conventions = null;
 
 		private LayoutInflater inflater;
 
 		public Adapter(LayoutInflater inflater) {
 			this.inflater = inflater;
+			
+			try {
+				this.conventions = ConventionsApi.getCachedConventions(getActivity());
+				ConventionsFragment.this.setListAdapter(this);
+				Log.i("conventions", "loaded cached conventions");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			//load the cached conventions first then update from network
 
 			new AsyncTask<Void, Void, ArrayList<Convention>>() {
 
 				@Override
 				protected ArrayList<Convention> doInBackground(Void... params) {
-					return ConventionsApi.getConventions(getActivity());
+					try {
+						return ConventionsApi.getOnlineConventions(getActivity());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					return null;
 				}
 
 				@Override
@@ -68,7 +84,8 @@ public class ConventionsFragment extends SherlockListFragment {
 					if (result != null) {
 						Adapter.this.conventions = result;
 						ConventionsFragment.this.setListAdapter(Adapter.this);
-					} else {
+						Log.i("conventions", "loaded online conventions");
+					} else if(Adapter.this.conventions == null){
 						ConventionsFragment.this
 								.setListAdapter(new ArrayAdapter<String>(
 										getActivity(),

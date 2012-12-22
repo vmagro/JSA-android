@@ -25,7 +25,10 @@
     <string name="agenda">Agenda</string>
     <string name="agenda_u"><![CDATA[<u>Agenda</u>]]></string>
     <string name="leave_a_comment">Leave a comment</string>
+    <string name="vote_for_speaker">Vote for Best Speaker</string>
+    <string name="scan_qr_directions">The app will now launch a QR code scanning application. If the scanner is not installed, we will prompt you to install it. Once the scanner opens, point it so that the QR code on your name badge is in the center of the camera image. The app will scan your ID and will allow you to vote for Best Speaker electronically.</string>
     <string name="submit">Submit</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
 
 </resources>

@@ -147,6 +147,19 @@ public class MainActivity extends SherlockFragmentActivity {
 		return this.getPreferences(MODE_PRIVATE).getString("name", "null");
 	}
 
+	public boolean shownQRDirections(){
+		SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+		
+		if(mPrefs.contains("shownqrdirections")) //do nothing if we have already obtained the user's information
+			return true;
+		else
+			return false;
+	}
+	
+	public void setShownQRDirections(){
+		getPreferences(MODE_PRIVATE).edit().putBoolean("shownqrdirections", true).commit();
+	}
+	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);

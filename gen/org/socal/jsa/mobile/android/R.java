@@ -916,36 +916,35 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
-        public static final int agenda=0x7f090020;
-        public static final int agenda_u=0x7f090021;
+        public static final int agenda=0x7f09001f;
+        public static final int agenda_u=0x7f090020;
         public static final int app_name=0x7f09000a;
-        public static final int cancel=0x7f090027;
-        public static final int chief_of_staff=0x7f090016;
-        public static final int chief_of_staff_person=0x7f090017;
-        public static final int director_of_chapter_affairs=0x7f090018;
-        public static final int director_of_chapter_affairs_person1=0x7f090019;
-        public static final int director_of_chapter_affairs_person2=0x7f09001a;
-        public static final int director_of_technology=0x7f09001b;
-        public static final int director_of_technology_person1=0x7f09001c;
-        public static final int director_of_technology_person2=0x7f09001d;
-        public static final int governor=0x7f09000e;
-        public static final int governor_email=0x7f090010;
-        public static final int governor_person=0x7f09000f;
-        public static final int hello_world=0x7f09000b;
-        public static final int leave_a_comment=0x7f090022;
-        public static final int lieutenant_governor=0x7f090011;
-        public static final int lieutenant_governor_email=0x7f090013;
-        public static final int lieutenant_governor_person=0x7f090012;
-        public static final int menu_settings=0x7f09000c;
-        public static final int ok=0x7f090026;
-        public static final int program_director=0x7f09001e;
-        public static final int program_director_person=0x7f09001f;
-        public static final int scan_qr_directions=0x7f090024;
-        public static final int speaker_of_the_assembly=0x7f090014;
-        public static final int speaker_of_the_assembly_person=0x7f090015;
-        public static final int submit=0x7f090025;
-        public static final int title_activity_main=0x7f09000d;
-        public static final int vote_for_speaker=0x7f090023;
+        public static final int cancel=0x7f090026;
+        public static final int chief_of_staff=0x7f090015;
+        public static final int chief_of_staff_person=0x7f090016;
+        public static final int director_of_chapter_affairs=0x7f090017;
+        public static final int director_of_chapter_affairs_person1=0x7f090018;
+        public static final int director_of_chapter_affairs_person2=0x7f090019;
+        public static final int director_of_technology=0x7f09001a;
+        public static final int director_of_technology_person1=0x7f09001b;
+        public static final int director_of_technology_person2=0x7f09001c;
+        public static final int governor=0x7f09000d;
+        public static final int governor_email=0x7f09000f;
+        public static final int governor_person=0x7f09000e;
+        public static final int leave_a_comment=0x7f090021;
+        public static final int lieutenant_governor=0x7f090010;
+        public static final int lieutenant_governor_email=0x7f090012;
+        public static final int lieutenant_governor_person=0x7f090011;
+        public static final int menu_settings=0x7f09000b;
+        public static final int ok=0x7f090025;
+        public static final int program_director=0x7f09001d;
+        public static final int program_director_person=0x7f09001e;
+        public static final int scan_qr_directions=0x7f090023;
+        public static final int speaker_of_the_assembly=0x7f090013;
+        public static final int speaker_of_the_assembly_person=0x7f090014;
+        public static final int submit=0x7f090024;
+        public static final int title_activity_main=0x7f09000c;
+        public static final int vote_for_speaker=0x7f090022;
     }
     public static final class style {
         public static final int AppTheme=0x7f0a0058;
@@ -1982,7 +1981,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int[] SherlockSpinner = {
             0x010100af, 0x01010175, 0x01010176, 0x0101017b,
-            0x01010262, 0x010102ac, 0x010102ad, 0x010103fd
+            0x01010262, 0x010102ac, 0x010102ad, 0x01010411
         };
         /**
           <p>

@@ -26,8 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+//import com.google.zxing.integration.android.IntentIntegrator;
+//import com.google.zxing.integration.android.IntentResult;
 
 public class AgendaTopicFragment extends SherlockFragment implements
 		OnClickListener {
@@ -126,7 +126,7 @@ public class AgendaTopicFragment extends SherlockFragment implements
 								}
 							}).show();
 		} else if (clicked.getId() == R.id.vote) { // voting for best speaker
-			final EditText et = new EditText(getActivity());
+			/*final EditText et = new EditText(getActivity());
 			et.setHint("Speaker Name");
 			new AlertDialog.Builder(getActivity())
 					.setView(et)
@@ -192,12 +192,12 @@ public class AgendaTopicFragment extends SherlockFragment implements
 												.setShownQRDirections();
 									}
 								}
-							}).show();
+							}).show();*/
 		}
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		IntentResult scanResult = IntentIntegrator.parseActivityResult(
+		/*IntentResult scanResult = IntentIntegrator.parseActivityResult(
 				requestCode, resultCode, intent);
 		if (scanResult != null) {
 			// handle scan result
@@ -205,7 +205,7 @@ public class AgendaTopicFragment extends SherlockFragment implements
 					Toast.LENGTH_LONG).show();
 			
 			AgendaApi.voteForSpeakerAsync(getActivity(), scanResult.getContents(), votedFor, id);
-		}
+		}*/
 	}
 
 	private static class CommentsAdapter extends BaseAdapter {

@@ -10,7 +10,7 @@ public class AgendaTopic implements Serializable{
 	private String block, text, time, location;
 	private int id;
 	
-	protected AgendaTopic(String block, String text, String time, String location, int id){
+	protected AgendaTopic(String block, String text, String longText, String time, String location, int id){
 		this.block = block;
 		this.text = text;
 		this.time = time;
@@ -19,7 +19,7 @@ public class AgendaTopic implements Serializable{
 	}
 	
 	protected AgendaTopic(JSONObject json){
-		this(json.optString("block"), json.optString("text"), json.optString("time"), json.optString("loc"), json.optInt("id"));
+		this(json.optString("block"), json.optString("text"), json.optString("longtext"), json.optString("time"), json.optString("loc"), json.optInt("id"));
 	}
 	
 	public String getBlock(){

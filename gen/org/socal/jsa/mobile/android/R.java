@@ -877,8 +877,9 @@ containing a value of this type.
         public static final int leave_a_comment=0x7f03001a;
         public static final int links_list_item=0x7f03001b;
         public static final int list_separator=0x7f03001c;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001d;
-        public static final int sherlock_spinner_item=0x7f03001e;
+        public static final int section_header=0x7f03001d;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001e;
+        public static final int sherlock_spinner_item=0x7f03001f;
     }
     public static final class menu {
         public static final int main_activity=0x7f0b0000;

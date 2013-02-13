@@ -48,7 +48,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		Tab conferencesTab = ab
 				.newTab()
-				.setText("Conferences")
+				.setText("Events")
 				.setTabListener(
 						new TabListener<ConventionsFragment>(this,
 								"conventions", ConventionsFragment.class));

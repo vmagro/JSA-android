@@ -57,22 +57,24 @@ public class ConventionsFragment extends SherlockListFragment {
 
 		public Adapter(LayoutInflater inflater) {
 			this.inflater = inflater;
-			
+
 			try {
-				this.conventions = ConventionsApi.getCachedConventions(getActivity());
+				this.conventions = ConventionsApi
+						.getCachedConventions(getActivity());
 				ConventionsFragment.this.setListAdapter(this);
 				Log.i("conventions", "loaded cached conventions");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			//load the cached conventions first then update from network
+			// load the cached conventions first then update from network
 
 			new AsyncTask<Void, Void, ArrayList<Convention>>() {
 
 				@Override
 				protected ArrayList<Convention> doInBackground(Void... params) {
 					try {
-						return ConventionsApi.getOnlineConventions(getActivity());
+						return ConventionsApi
+								.getOnlineConventions(getActivity());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -83,9 +85,17 @@ public class ConventionsFragment extends SherlockListFragment {
 				protected void onPostExecute(ArrayList<Convention> result) {
 					if (result != null) {
 						Adapter.this.conventions = result;
-						ConventionsFragment.this.setListAdapter(Adapter.this);
+						if (result.size() == 0)
+							ConventionsFragment.this
+									.setListAdapter(new ArrayAdapter<String>(
+											getActivity(),
+											android.R.layout.simple_list_item_1,
+											new String[] { "No data available..." }));
+						else
+							ConventionsFragment.this
+									.setListAdapter(Adapter.this);
 						Log.i("conventions", "loaded online conventions");
-					} else if(Adapter.this.conventions == null){
+					} else if (Adapter.this.conventions == null) {
 						ConventionsFragment.this
 								.setListAdapter(new ArrayAdapter<String>(
 										getActivity(),

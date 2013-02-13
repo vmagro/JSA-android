@@ -25,6 +25,11 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"/>
     
+    <Button android:id="@+id/vote"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/vote"/>
+    
     <Button android:id="@+id/leaveAComment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

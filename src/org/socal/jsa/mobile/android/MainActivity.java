@@ -143,6 +143,10 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 	}
 	
+	public void removeFacebook(){
+		
+	}
+	
 	public String getFacebookName(){
 		return this.getPreferences(MODE_PRIVATE).getString("name", "null");
 	}

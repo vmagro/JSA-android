@@ -27,14 +27,14 @@ import com.actionbarsherlock.app.SherlockFragment;
 public class AgendaTopicFragment extends SherlockFragment implements
 		OnClickListener {
 	
-	private int id;
+	private int topicId;
 	private ListView commentsLv;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup root,
 			Bundle savedInstanceState) {
 		AgendaTopic t = (AgendaTopic) getArguments().getSerializable(
 				"topic");
-		id = t.getId();
+		topicId = t.getId();
 		getSherlockActivity().getSupportActionBar().setTitle(t.getBlock());
 		View v = inflater.inflate(R.layout.agenda, null);
 		((TextView) v.findViewById(R.id.block)).setText(Html.fromHtml(t
@@ -52,6 +52,7 @@ public class AgendaTopicFragment extends SherlockFragment implements
 		loadComments();
 		
 		v.findViewById(R.id.leaveAComment).setOnClickListener(this);
+		v.findViewById(R.id.vote).setOnClickListener(this);
 
 		return v;
 	}
@@ -62,7 +63,7 @@ public class AgendaTopicFragment extends SherlockFragment implements
 			@Override
 			protected ArrayList<Comment> doInBackground(Void... params) {
 				try {
-					return AgendaApi.getComments(id);
+					return AgendaApi.getComments(topicId);
 				} catch (Exception ex) {
 					return null;
 				}
@@ -103,13 +104,41 @@ public class AgendaTopicFragment extends SherlockFragment implements
 						public void onClick(DialogInterface dialog, int which) {
 							String text = ((EditText) v.findViewById(R.id.text)).getText().toString();
 							String author = ((MainActivity) AgendaTopicFragment.this.getActivity()).getFacebookName();
-							AgendaApi.sendCommentAsync(author, text, id);
+							AgendaApi.sendCommentAsync(author, text, topicId);
 							try {
 								Thread.sleep(250);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
 							loadComments();
+						}
+					})
+					.show();
+		}
+		else if (clicked.getId() == R.id.vote){
+			((MainActivity) AgendaTopicFragment.this.getActivity()).authFacebook();
+			final View v = getActivity().getLayoutInflater().inflate(
+					R.layout.vote, null);
+			new AlertDialog.Builder(getActivity())
+					.setView(v)
+					.setTitle(R.string.vote)
+					.setNegativeButton(R.string.cancel,
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.cancel();
+								}
+
+							})
+					.setPositiveButton(R.string.submit, new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							String speaker = ((EditText) v.findViewById(R.id.best_speaker)).getText().toString();
+							String user = ((MainActivity) AgendaTopicFragment.this.getActivity()).getFacebookName();
+							AgendaApi.sendVoteAsync(user, speaker, topicId);
 						}
 					})
 					.show();

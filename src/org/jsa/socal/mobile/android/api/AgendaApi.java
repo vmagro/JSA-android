@@ -77,5 +77,38 @@ public class AgendaApi {
 			
 		}.execute();
 	}
+	
+	public static void sendVoteAsync(final String name, final String speaker,
+			final int topicId) {
+		new AsyncTask<Void, Void, Void>() {
+			
+			@Override
+			public Void doInBackground(Void... params) {
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpPost httppost = new HttpPost(Api.VOTE);
+
+				try {
+					// Add your data
+					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+							2);
+					nameValuePairs.add(new BasicNameValuePair("id", String
+							.valueOf(topicId)));
+					nameValuePairs.add(new BasicNameValuePair("user", name));
+					nameValuePairs.add(new BasicNameValuePair("speaker", speaker));
+					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+					// Execute HTTP Post Request
+					httpclient.execute(httppost);
+					Log.i("vote", "sent vote");
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return null;
+			}
+			
+		}.execute();
+	}
 
 }

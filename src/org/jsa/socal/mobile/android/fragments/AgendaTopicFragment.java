@@ -40,7 +40,7 @@ public class AgendaTopicFragment extends SherlockFragment implements
 		((TextView) v.findViewById(R.id.block)).setText(Html.fromHtml(t
 				.getBlock()));
 		((TextView) v.findViewById(R.id.text)).setText(Html.fromHtml(t
-				.getText()));
+				.getText()+"<br>"+t.getLongText()));
 		((TextView) v.findViewById(R.id.time)).setText(Html.fromHtml(t
 				.getTime()));
 		((TextView) v.findViewById(R.id.location)).setText(Html.fromHtml(t

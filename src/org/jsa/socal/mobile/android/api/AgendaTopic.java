@@ -7,12 +7,13 @@ import org.json.JSONObject;
 @SuppressWarnings("serial")
 public class AgendaTopic implements Serializable{
 	
-	private String block, text, time, location;
+	private String block, text, time, location, longText;
 	private int id;
 	
 	protected AgendaTopic(String block, String text, String longText, String time, String location, int id){
 		this.block = block;
 		this.text = text;
+		this.longText = longText;
 		this.time = time;
 		this.location = location;
 		this.id = id;
@@ -28,6 +29,10 @@ public class AgendaTopic implements Serializable{
 	
 	public String getText(){
 		return text;
+	}
+	
+	public String getLongText(){
+		return longText;
 	}
 	
 	public int getId(){
